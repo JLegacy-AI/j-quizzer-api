@@ -4,7 +4,21 @@ const userRoute =  express.Router();
 
 userRoute.post('/',(req,res) => {
     global.databaseInstance.collection("users").insertOne({ ...req.body })
-    res.send("User Post Connection Established");
+    .then((result) => {
+        res.send({status: true, result});
+    }).catch((err) => {
+        res.send({status: false, error: err});
+    });
+});
+
+userRoute.post('/login',(req,res) => {
+    global.databaseInstance.collection("users").findOne({ ...req.body }, (err, result) => {
+        if(!err){
+            res.send({ ...result , login:true})
+            return
+        }
+        res.send({...err, login:false})
+    });
 });
 
 userRoute.get('/',(req,res) => {

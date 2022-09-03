@@ -8,7 +8,7 @@ let dbConnection
 module.exports = {
     //Database Connection Established Function
     connectToDB: (callBack) => {
-                        mongoose.connect('mongodb+srv://m001-student:Mr_Jamal123@sandbox.7z1kdhb.mongodb.net/j-quizzer?retryWrites=true&w=majority')
+                        mongoose.connect('mongodb://127.0.0.1:27017/j-quizzer?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.5.4')
                         .then( (db) => {
                             dbConnection = db.connection
                             return callBack()

@@ -17,7 +17,8 @@ connectToDB( (error => {
       console.log(`Database Connection Established\nNow, Server Start Listening on port: ${PORT}`)  
     })
     global.databaseInstance = getDB()
-  }
+  } else 
+    console.error(error);
 }))
 
 // USER Routes
